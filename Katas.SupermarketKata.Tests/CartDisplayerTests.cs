@@ -6,12 +6,25 @@ namespace Katas.SupermarketKata.Tests
     public class CartDisplayerTests
     {
         [Test]
-        public void CartDisplayer_DisplaySingleItem()
+        public void Iterator_DisplaySingleItem()
         {
             var cart = new Cart();
             cart.Add(Products.LoafOfBread, 2);
             var displayer = new CartDisplayer(cart);
             Assert.That(displayer[0], Is.EqualTo("Product: Loaf of Bread\tPrice: $1.00\tExtended Price: $2.00"));
+        }
+
+        [Test]
+        public void Iterator_DisplayAllItems()
+        {
+            var cart = new Cart();
+            cart.AddRange(Products.All);
+            var displayer = new CartDisplayer(cart);
+            Assert.That(displayer[0], Is.EqualTo("Product: Loaf of Bread\tPrice: $1.00\tExtended Price: $1.00"));
+            Assert.That(displayer[1], Is.EqualTo("Product: Noodles\tPrice: $0.50\tExtended Price: $0.50"));
+            Assert.That(displayer[2], Is.EqualTo("Product: Soup Cans\tPrice: $2.00\tExtended Price: $2.00"));
+
+
         }
     }
 }
