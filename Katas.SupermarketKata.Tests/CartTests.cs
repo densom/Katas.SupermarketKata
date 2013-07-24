@@ -19,14 +19,40 @@ namespace Katas.SupermarketKata.Tests
             Assert.That(cart.Total(), Is.EqualTo(0));
         }
 
+
+
         [Test]
-        public void GetTotal_LoafOfBread()
+        public void GetTotal_AddProduct_NoQuantitySpecified()
         {
             var cart = new Cart();
             cart.Add(new LoafOfBread());
             Assert.That(cart.Total(), Is.EqualTo(LoafOfBreadPrice));
         }
-        
+
+        [Test]
+        public void GetTotal_AddProduct_MoreThanOneQuantity()
+        {
+            var cart = new Cart();
+            cart.Add(new LoafOfBread(), 2);
+            Assert.That(cart.Total(), Is.EqualTo(LoafOfBreadPrice * 2));
+        }
+
+
+
+    }
+
+    [TestFixture]
+    public class CartDisplayerTests
+    {
+        [Test]
+        public void CartDisplayer_DisplaySingleItem()
+        {
+            var cart = new Cart();
+            cart.Add(new LoafOfBread(), 2);
+            CartDisplayer displayer = new CartDisplayer(cart);
+            Assert.That(displayer[0], Is.EqualTo("Product: Loaf of Bread\tPrice: $1.00\tExtended Price: $2.00"));
+
+        }
     }
 
     [TestFixture]
@@ -55,5 +81,5 @@ namespace Katas.SupermarketKata.Tests
         }
     }
 
-    
+
 }
