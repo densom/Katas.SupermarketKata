@@ -6,12 +6,12 @@ namespace Katas.SupermarketKata.Tests
     public class ProductTests
     {
         private const decimal PriceLoadOfBread = 1m;
+        private Product _loafOfBread = new Product("Loaf of Bread", PriceLoadOfBread);
 
         [Test]
         public void CreateProduct()
         {
-            var bread = new LoafOfBread();
-            Assert.That(bread.Price, Is.EqualTo(PriceLoadOfBread));
+            Assert.That(_loafOfBread.Price, Is.EqualTo(PriceLoadOfBread));
         }
     }
 }

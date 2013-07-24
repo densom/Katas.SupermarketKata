@@ -35,5 +35,10 @@ namespace Katas.SupermarketKata
         {
             Add(new CartItem(product, quantity));
         }
+
+        public void AddRange(IEnumerable<IProduct> products)
+        {
+            products.ToList().ForEach(Add);
+        }
     }
 }

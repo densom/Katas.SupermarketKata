@@ -8,10 +8,9 @@ namespace Katas.SupermarketKata.Tests
         [Test]
         public void CreateCartItem()
         {
-            var loafOfBread = new LoafOfBread();
-            var item = new CartItem(loafOfBread, 1);
+            var item = new CartItem(Products.LoafOfBread, 1);
             Assert.That(item.Quantity, Is.EqualTo(1));
-            Assert.AreSame(item.Product, loafOfBread);
+            Assert.AreSame(item.Product, Products.LoafOfBread);
         }
     }
 }

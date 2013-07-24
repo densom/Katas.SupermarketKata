@@ -25,7 +25,7 @@ namespace Katas.SupermarketKata.Tests
         public void GetTotal_AddProduct_NoQuantitySpecified()
         {
             var cart = new Cart();
-            cart.Add(new LoafOfBread());
+            cart.Add(Products.LoafOfBread);
             Assert.That(cart.Total(), Is.EqualTo(LoafOfBreadPrice));
         }
 
@@ -33,8 +33,16 @@ namespace Katas.SupermarketKata.Tests
         public void GetTotal_AddProduct_MoreThanOneQuantity()
         {
             var cart = new Cart();
-            cart.Add(new LoafOfBread(), 2);
+            cart.Add(Products.LoafOfBread, 2);
             Assert.That(cart.Total(), Is.EqualTo(LoafOfBreadPrice * 2));
+        }
+
+        [Test]
+        public void GetTotal_AllProducts()
+        {
+            var cart = new Cart();
+            cart.AddRange(new[] {Products.LoafOfBread, Products.Noodles, Products.SoupCans});
+            Assert.That(cart.Total(), Is.EqualTo(3.5m));
         }
     }
 }
