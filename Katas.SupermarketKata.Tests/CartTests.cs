@@ -44,5 +44,13 @@ namespace Katas.SupermarketKata.Tests
             cart.AddRange(new[] {Products.LoafOfBread, Products.Noodles, Products.SoupCans});
             Assert.That(cart.Total(), Is.EqualTo(3.5m));
         }
+
+        [Test]
+        public void GetTotal_ByWeightProduct()
+        {
+            var cart = new Cart();
+            cart.Add(Products.Apples, 1);
+            Assert.That(cart.Total(), Is.EqualTo(2));
+        }
     }
 }
