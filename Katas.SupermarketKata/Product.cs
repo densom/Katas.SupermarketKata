@@ -2,19 +2,19 @@
 {
     public class Product : IProduct
     {
-        public Product()
-        {
-            
-        }
+        private readonly decimal _price;
 
         public Product(string description, decimal price)
         {
             Description = description;
-            Price = price;
+            _price = price;
         }
 
-        public decimal Price { get; set; }
+        public decimal Price
+        {
+            get { return _price; }
+        }
 
-        public string Description { get; set; }
+        public string Description { get; private set; }
     }
 }
