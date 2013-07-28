@@ -29,13 +29,6 @@ namespace Katas.SupermarketKata
 
         private string GetPriceString(IProduct product)
         {
-            if (product is IWeighableProduct)
-            {
-                // IWeighableProduct will not work.  It is too specific and does not belong to IProduct
-                // Need to figure out best place to handle formatting the price string.
-                return string.Format("{0:c}/{1}", product.Price, product.Weight);
-            }
-
             return string.Format("{0:c}", product.Price);
         }
 

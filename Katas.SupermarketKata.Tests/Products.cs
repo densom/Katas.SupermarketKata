@@ -10,7 +10,7 @@ namespace Katas.SupermarketKata.Tests
 
         public static readonly IEnumerable<IProduct> AllBasicProducts = new[] {LoafOfBread, Noodles, SoupCans};
 
-        public static readonly IWeighableProduct Apples = new ProductByWeight("Apples", 2, "lb.");
+        public static readonly IProduct Apples = new Product("Apples", 2, "lb.");
     }
 
     
