@@ -2,6 +2,7 @@
 {
     public class Product : IProduct
     {
+        #region constructors
         public Product()
         {
             
@@ -18,6 +19,7 @@
            WeightUnit = weightUnit;
             IsByWeight = true;
         }
+        #endregion
 
         public decimal Price { get; set; }
         public string Description { get; set; }

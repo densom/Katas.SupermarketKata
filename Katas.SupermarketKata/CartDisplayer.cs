@@ -29,6 +29,11 @@ namespace Katas.SupermarketKata
 
         private string GetPriceString(IProduct product)
         {
+            if (product.IsByWeight)
+            {
+                return string.Format(@"{0:c}\{1}", product.Price, product.WeightUnit);
+            }
+
             return string.Format("{0:c}", product.Price);
         }
 
