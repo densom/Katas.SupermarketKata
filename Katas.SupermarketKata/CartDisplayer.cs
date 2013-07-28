@@ -20,23 +20,12 @@ namespace Katas.SupermarketKata
         private string ShowProduct(int i)
         {
             var sb = new StringBuilder();
-            sb.AppendFormat("Product: {0}\t", _cart[i].Product.Description);
-            sb.AppendFormat("Price: {0}\t", GetPriceString(_cart[i].Product));
+            sb.AppendFormat("Product: {0}\t", _cart[i].Description);
+            sb.AppendFormat("Price: {0}\t", _cart[i].PriceString);
             sb.AppendFormat("Extended Price: {0:c}", _cart[i].ExtendedPrice);
 
             return sb.ToString();
         }
-
-        private string GetPriceString(IProduct product)
-        {
-            if (product.IsByWeight)
-            {
-                return string.Format(@"{0:c}\{1}", product.Price, product.WeightUnit);
-            }
-
-            return string.Format("{0:c}", product.Price);
-        }
-
 
         public string Total()
         {

@@ -12,7 +12,7 @@ namespace Katas.SupermarketKata
 
         public decimal Total()
         {
-            return _cartItems.Sum(item => item.Product.Price * item.Quantity);
+            return _cartItems.Sum(item => item.Price * item.Quantity);
         }
 
         public void Add(IProduct product)
