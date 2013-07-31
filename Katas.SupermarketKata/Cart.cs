@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -39,6 +38,11 @@ namespace Katas.SupermarketKata
         public void AddRange(IEnumerable<IProduct> products)
         {
             products.ToList().ForEach(Add);
+        }
+
+        public void ApplyPromotion(BuyXGetYFreePromotion promotion)
+        {
+            promotion.Apply(this);
         }
     }
 }
