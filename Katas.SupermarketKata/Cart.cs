@@ -9,6 +9,11 @@ namespace Katas.SupermarketKata
     {
         readonly List<CartItem> _cartItems = new List<CartItem>();
 
+        public IEnumerable<CartItem> Items
+        {
+            get { return _cartItems.AsReadOnly(); }
+        }
+
         public decimal Total()
         {
             return _cartItems.Sum(item => item.Product.Price * item.Quantity);
@@ -42,7 +47,7 @@ namespace Katas.SupermarketKata
 
         public void ApplyPromotion(BuyXGetYFreePromotion promotion)
         {
-            promotion.Apply(this);
+            promotion.Apply();
         }
     }
 }

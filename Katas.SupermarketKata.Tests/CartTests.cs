@@ -57,8 +57,8 @@ namespace Katas.SupermarketKata.Tests
         public void Promotion_BuyXGetYFree_IsApplicable_False()
         {
             var cart = new Cart();
-            cart.Add(Products.SoupCans, 4);
-            var promotion = new BuyXGetYFreePromotion(Products.SoupCans, 3, 1);
+            cart.Add(Products.SoupCans, 3);
+            var promotion = new BuyXGetYFreePromotion(cart, Products.SoupCans, 4, 1);
             Assert.That(promotion.IsApplicable(), Is.False);
         }
 
@@ -67,7 +67,7 @@ namespace Katas.SupermarketKata.Tests
         {
             var cart = new Cart();
             cart.Add(Products.SoupCans, 4);
-            var promotion = new BuyXGetYFreePromotion(Products.SoupCans, 4, 1);
+            var promotion = new BuyXGetYFreePromotion(cart, Products.SoupCans, 4, 1);
             Assert.That(promotion.IsApplicable(), Is.True);
         }
 
@@ -77,7 +77,7 @@ namespace Katas.SupermarketKata.Tests
         {
             var cart = new Cart();
             cart.Add(Products.SoupCans, 4);
-            cart.ApplyPromotion(new BuyXGetYFreePromotion(Products.SoupCans, 4, 1));
+            cart.ApplyPromotion(new BuyXGetYFreePromotion(cart, Products.SoupCans, 4, 1));
             Assert.That(cart.Total(), Is.EqualTo(Products.SoupCans.Price * 3));
         }
     }
