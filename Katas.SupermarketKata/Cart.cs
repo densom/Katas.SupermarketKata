@@ -11,7 +11,7 @@ namespace Katas.SupermarketKata
 
         public IEnumerable<CartItem> Items
         {
-            get { return _cartItems.AsReadOnly(); }
+            get { return _cartItems.Values.ToList().AsReadOnly(); }
         }
 
         public decimal Total()
