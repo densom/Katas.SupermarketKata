@@ -10,7 +10,7 @@ namespace Katas.SupermarketKata.Tests
         {
             var item = new CartItem(Products.LoafOfBread, 1);
             Assert.That(item.Quantity, Is.EqualTo(1));
-            Assert.AreSame(item.Product, Products.LoafOfBread);
+            Assert.AreSame(item.Description, Products.LoafOfBread.Description);
         }
     }
 }
