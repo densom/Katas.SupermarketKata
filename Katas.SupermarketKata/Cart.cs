@@ -51,6 +51,11 @@ namespace Katas.SupermarketKata
             get { return _cartItems.Values.ToList()[i]; }
         }
 
+        public CartItem this[string productDescription]
+        {
+            get { return _cartItems[productDescription]; }
+        }
+
         public void Add(IProduct product, int quantity)
         {
             Add(new CartItem(product, quantity));

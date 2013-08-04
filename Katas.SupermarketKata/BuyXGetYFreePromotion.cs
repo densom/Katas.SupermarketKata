@@ -30,10 +30,7 @@ namespace Katas.SupermarketKata
 
         internal bool IsApplicable()
         {
-            var count =
-                Cart.Items.Where(item => item.Description == Product.Description).Sum(item => item.Quantity);
-
-            if (count >= BuyX)
+            if (Cart[Product.Description].Quantity >= BuyX)
             {
                 return true;
             }
