@@ -8,27 +8,43 @@ namespace Katas.SupermarketKata
 {
     public class Cart
     {
-        readonly List<CartItem> _cartItems = new List<CartItem>();
+        readonly Dictionary<string, CartItem> _cartItems = new Dictionary<string, CartItem>();
 
         public decimal Total()
         {
-            return _cartItems.Sum(item => item.Price * item.Quantity);
+            return _cartItems.Sum(item => item.Value.Price * item.Value.Quantity);
         }
 
         public void Add(IProduct product)
         {
             var item = new CartItem(product, 1);
-            _cartItems.Add(item);
+            _cartItems.Add(product.Description, item);
         }
 
         public void Add(CartItem item)
         {
-            _cartItems.Add(item);
+            if (ProductAlreadyInCart(item))
+            {
+                IncreaseQuantity(item);
+                return;
+            }
+
+            _cartItems.Add(item.Description,item);
+        }
+
+        private void IncreaseQuantity(CartItem item)
+        {
+            _cartItems[item.Description].Quantity += item.Quantity;
+        }
+
+        private bool ProductAlreadyInCart(CartItem item)
+        {
+            return _cartItems.ContainsKey(item.Description);
         }
 
         public CartItem this[int i]
         {
-            get { return _cartItems[i]; }
+            get { return _cartItems.Values.ToList()[i]; }
         }
 
         public void Add(IProduct product, int quantity)

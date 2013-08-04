@@ -38,6 +38,21 @@ namespace Katas.SupermarketKata.Tests
         }
 
         [Test]
+        public void AddProduct_WhenProductAlreadyExists_IncreaseQuantity()
+        {
+            var cart = new Cart();
+            cart.Add(Products.LoafOfBread, 1);
+
+            Assert.That(cart[0].Description, Is.EqualTo(Products.LoafOfBread.Description));
+            Assert.That(cart[0].Quantity, Is.EqualTo(1));
+
+            cart.Add(Products.LoafOfBread, 1);
+
+            Assert.That(cart[0].Description, Is.EqualTo(Products.LoafOfBread.Description));
+            Assert.That(cart[0].Quantity, Is.EqualTo(2));
+        }
+
+        [Test]
         public void GetTotal_AllProducts()
         {
             var cart = new Cart();
