@@ -39,6 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BuyXForYPromotion.cs" />
     <Compile Include="BuyXGetYFreePromotion.cs" />
     <Compile Include="Cart.cs" />
     <Compile Include="CartDisplayer.cs" />
