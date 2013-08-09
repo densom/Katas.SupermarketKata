@@ -29,8 +29,22 @@ namespace Katas.SupermarketKata
             }
 
             //todo:  Add DiscountCartItems
+            for (int i = 0; i < DiscountItemsEarned(); i++)
+            {
+                Cart.Add(new DiscountCartItem(string.Format("Buy {0} get {1}: {2}",BuyX, GetY, Product.Description), CalculatedDiscountPrice(), 1));
+            }
 
 
+        }
+
+        internal decimal CalculatedDiscountPrice()
+        {
+            return Product.Price * GetY * -1;
+        }
+
+        internal int DiscountItemsEarned()
+        {
+            return QuantityOfPromoItemsInCart()/BuyX;
         }
 
         internal bool IsApplicable()

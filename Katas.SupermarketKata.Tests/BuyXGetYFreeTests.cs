@@ -36,6 +36,17 @@ namespace Katas.SupermarketKata.Tests
             
             //verification
             Assert.That(promotion.QuantityOfPromoItemsInCart(), Is.EqualTo(4));
+            Assert.That(promotion.DiscountItemsEarned(), Is.EqualTo(1));
+        }
+
+        [Test]
+        public void ApplyPromotion_CalculatedDiscountPriceIsOnceSoupCan()
+        {
+            var cart = new Cart();
+            cart.Add(Products.SoupCans, 4);
+            var promotion = new BuyXGetYFreePromotion(cart, Products.SoupCans, 4, 1);
+            cart.ApplyPromotion(promotion);
+            Assert.That(promotion.CalculatedDiscountPrice(), Is.EqualTo(Products.SoupCans.Price * -1));
         }
 
         [Test]
@@ -45,6 +56,17 @@ namespace Katas.SupermarketKata.Tests
             cart.Add(Products.SoupCans, 4);
             cart.ApplyPromotion(new BuyXGetYFreePromotion(cart, Products.SoupCans, 4, 1));
             Assert.That(cart.Total(), Is.EqualTo(Products.SoupCans.Price * 3));
+        }
+
+        [Test]
+        public void ApplyPromotion_DiscountsMultipleLineItem()
+        {
+            var cart = new Cart();
+            cart.Add(Products.SoupCans, 8);
+            var promotion = new BuyXGetYFreePromotion(cart, Products.SoupCans, 4, 1);
+
+            cart.ApplyPromotion(promotion);
+            Assert.That(cart.Total(), Is.EqualTo(Products.SoupCans.Price * 6));
         }
     }
 }

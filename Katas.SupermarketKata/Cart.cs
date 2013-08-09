@@ -7,9 +7,9 @@ namespace Katas.SupermarketKata
 {
     public class Cart
     {
-        readonly Dictionary<string, ProductCartItem> _cartItems = new Dictionary<string, ProductCartItem>();
+        readonly Dictionary<string, CartItem> _cartItems = new Dictionary<string, CartItem>();
 
-        public IEnumerable<ProductCartItem> Items
+        public IEnumerable<CartItem> Items
         {
             get { return _cartItems.Values.ToList().AsReadOnly(); }
         }
@@ -25,7 +25,7 @@ namespace Katas.SupermarketKata
             _cartItems.Add(product.Description, item);
         }
 
-        public void Add(ProductCartItem item)
+        public void Add(CartItem item)
         {
             if (ProductAlreadyInCart(item))
             {
@@ -36,22 +36,22 @@ namespace Katas.SupermarketKata
             _cartItems.Add(item.Description,item);
         }
 
-        private void IncreaseQuantity(ProductCartItem item)
+        private void IncreaseQuantity(CartItem item)
         {
             _cartItems[item.Description].Quantity += item.Quantity;
         }
 
-        private bool ProductAlreadyInCart(ProductCartItem item)
+        private bool ProductAlreadyInCart(CartItem item)
         {
             return _cartItems.ContainsKey(item.Description);
         }
 
-        public ProductCartItem this[int i]
+        public CartItem this[int i]
         {
             get { return _cartItems.Values.ToList()[i]; }
         }
 
-        public ProductCartItem this[string productDescription]
+        public CartItem this[string productDescription]
         {
             get { return _cartItems[productDescription]; }
         }
