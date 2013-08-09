@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Katas.SupermarketKata
 {
+    
     public class BuyXGetYFreePromotion
     {
         public IProduct Product { get; private set; }
@@ -28,6 +30,7 @@ namespace Katas.SupermarketKata
 
             //todo:  Add DiscountCartItems
 
+
         }
 
         internal bool IsApplicable()
@@ -38,6 +41,16 @@ namespace Katas.SupermarketKata
             }
 
             return false;
+        }
+
+        internal int QuantityOfPromoItemsInCart()
+        {
+            return WhereIsPromoItem().Sum(item => item.Quantity);
+        }
+
+        private IEnumerable<CartItem> WhereIsPromoItem()
+        {
+            return Cart.Items.Where(item => item.Description == Product.Description);
         }
     }
 }

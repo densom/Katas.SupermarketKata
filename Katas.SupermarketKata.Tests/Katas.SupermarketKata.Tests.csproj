@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BuyXGetYFreeTests.cs" />
     <Compile Include="CartDisplayerTests.cs" />
     <Compile Include="CartItemTests.cs" />
     <Compile Include="CartTests.cs" />

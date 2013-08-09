@@ -19,5 +19,7 @@
         {
             return string.Format("{0:c}", Price);
         }
+
+        public int PromoQuantity { get; set; }
     }
 }
