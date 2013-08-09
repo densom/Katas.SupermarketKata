@@ -7,9 +7,9 @@ namespace Katas.SupermarketKata
 {
     public class Cart
     {
-        readonly Dictionary<string, CartItem> _cartItems = new Dictionary<string, CartItem>();
+        readonly Dictionary<string, ProductCartItem> _cartItems = new Dictionary<string, ProductCartItem>();
 
-        public IEnumerable<CartItem> Items
+        public IEnumerable<ProductCartItem> Items
         {
             get { return _cartItems.Values.ToList().AsReadOnly(); }
         }
@@ -21,11 +21,11 @@ namespace Katas.SupermarketKata
 
         public void Add(IProduct product)
         {
-            var item = new CartItem(product, 1);
+            var item = new ProductCartItem(product, 1);
             _cartItems.Add(product.Description, item);
         }
 
-        public void Add(CartItem item)
+        public void Add(ProductCartItem item)
         {
             if (ProductAlreadyInCart(item))
             {
@@ -36,29 +36,29 @@ namespace Katas.SupermarketKata
             _cartItems.Add(item.Description,item);
         }
 
-        private void IncreaseQuantity(CartItem item)
+        private void IncreaseQuantity(ProductCartItem item)
         {
             _cartItems[item.Description].Quantity += item.Quantity;
         }
 
-        private bool ProductAlreadyInCart(CartItem item)
+        private bool ProductAlreadyInCart(ProductCartItem item)
         {
             return _cartItems.ContainsKey(item.Description);
         }
 
-        public CartItem this[int i]
+        public ProductCartItem this[int i]
         {
             get { return _cartItems.Values.ToList()[i]; }
         }
 
-        public CartItem this[string productDescription]
+        public ProductCartItem this[string productDescription]
         {
             get { return _cartItems[productDescription]; }
         }
 
         public void Add(IProduct product, int quantity)
         {
-            Add(new CartItem(product, quantity));
+            Add(new ProductCartItem(product, quantity));
         }
 
         public void AddRange(IEnumerable<IProduct> products)

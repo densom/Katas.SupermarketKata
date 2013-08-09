@@ -26,6 +26,8 @@ namespace Katas.SupermarketKata
                 return;
             }
 
+            //todo:  Add DiscountCartItems
+
         }
 
         internal bool IsApplicable()

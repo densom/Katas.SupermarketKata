@@ -1,27 +1,10 @@
-﻿using Katas.SupermarketKata;
-
-namespace Katas.SupermarketKata
+﻿namespace Katas.SupermarketKata
 {
-    public class CartItem
+    public abstract class CartItem
     {
-        public CartItem(IProduct product, int quantity)
-        {
-            Quantity = quantity;
-            Product = product;
-        }
-
         public int Quantity { get; set; }
-        private IProduct Product { get; set; }
-
-        public decimal Price
-        {
-            get { return Product.Price; }
-        }
-
-        public string Description
-        {
-            get { return Product.Description; }
-        }
+        public decimal Price { get; protected set; }
+        public string Description { get; protected set; }
 
         public string PriceString
         {
@@ -31,25 +14,10 @@ namespace Katas.SupermarketKata
             }
         }
 
-        private string FormatPriceString()
+        public decimal ExtendedPrice { get { return Quantity * Price; } }
+        public virtual string FormatPriceString()
         {
-            if (Product.IsByWeight)
-            {
-                return string.Format(@"{0:c}\{1}", Product.Price, Product.WeightUnit);
-            }
-
-            return string.Format("{0:c}", Product.Price);
-        }
-
-        public decimal ExtendedPrice
-        {
-            get { return Quantity * ItemPrice; }
-
-        }
-
-        public decimal ItemPrice
-        {
-            get { return Product.Price; }
+            return string.Format("{0:c}", Price);
         }
     }
 }
