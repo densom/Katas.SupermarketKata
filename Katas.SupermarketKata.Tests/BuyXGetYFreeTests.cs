@@ -1,4 +1,5 @@
 ﻿using NUnit.Framework;
+using System.Linq;
 
 namespace Katas.SupermarketKata.Tests
 {
@@ -56,6 +57,7 @@ namespace Katas.SupermarketKata.Tests
             cart.Add(Products.SoupCans, 4);
             cart.ApplyPromotion(new BuyXGetYFreePromotion(cart, Products.SoupCans, 4, 1));
             Assert.That(cart.Total(), Is.EqualTo(Products.SoupCans.Price * 3));
+            Assert.That(cart.Items.Count(item => item.Description == "Buy 4 get 1: Soup Cans"), Is.EqualTo(1));
         }
 
         [Test]

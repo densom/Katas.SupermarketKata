@@ -28,7 +28,6 @@ namespace Katas.SupermarketKata
                 return;
             }
 
-            //todo:  Add DiscountCartItems
             for (int i = 0; i < DiscountItemsEarned(); i++)
             {
                 Cart.Add(new DiscountCartItem(string.Format("Buy {0} get {1}: {2}",BuyX, GetY, Product.Description), CalculatedDiscountPrice(), 1));
