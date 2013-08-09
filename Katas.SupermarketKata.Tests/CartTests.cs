@@ -68,6 +68,14 @@ namespace Katas.SupermarketKata.Tests
             Assert.That(cart.Total(), Is.EqualTo(2));
         }
 
+//        [Test]
+//        public void RemovePromotions_Success()
+//        {
+//            var cart = new Cart();
+//            cart.Add(Products.SoupCans, 4);
+//            cart.ApplyPromotion();
+//        }
+
  
 
         

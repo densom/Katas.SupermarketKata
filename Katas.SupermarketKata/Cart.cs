@@ -66,7 +66,7 @@ namespace Katas.SupermarketKata
             products.ToList().ForEach(Add);
         }
 
-        public void ApplyPromotion(BuyXGetYFreePromotion promotion)
+        public void ApplyPromotion(Promotion promotion)
         {
             promotion.Apply();
         }

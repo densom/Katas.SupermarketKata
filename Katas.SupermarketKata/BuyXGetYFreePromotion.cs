@@ -5,23 +5,21 @@ using System.Linq;
 namespace Katas.SupermarketKata
 {
     
-    public class BuyXGetYFreePromotion
+    public class BuyXGetYFreePromotion : Promotion
     {
         public IProduct Product { get; private set; }
         public int BuyX { get; private set; }
         public int GetY { get; private set; }
-        public Cart Cart { get; private set; }
 
-        public BuyXGetYFreePromotion(Cart cart, IProduct product, int buyX, int getY)
+        public BuyXGetYFreePromotion(Cart cart, IProduct product, int buyX, int getY):base(cart)
         {
-            Cart = cart;
             Product = product;
             BuyX = buyX;
             GetY = getY;
 
         }
 
-        public void Apply()
+        public override void Apply()
         {
             if (!IsApplicable())
             {
@@ -32,8 +30,6 @@ namespace Katas.SupermarketKata
             {
                 Cart.Add(new DiscountCartItem(string.Format("Buy {0} get {1}: {2}",BuyX, GetY, Product.Description), CalculatedDiscountPrice(), 1));
             }
-
-
         }
 
         internal decimal CalculatedDiscountPrice()
@@ -46,16 +42,6 @@ namespace Katas.SupermarketKata
             return QuantityOfPromoItemsInCart()/BuyX;
         }
 
-        internal bool IsApplicable()
-        {
-            if (Cart[Product.Description].Quantity >= BuyX)
-            {
-                return true;
-            }
-
-            return false;
-        }
-
         internal int QuantityOfPromoItemsInCart()
         {
             return WhereIsPromoItem().Sum(item => item.Quantity);
@@ -64,6 +50,16 @@ namespace Katas.SupermarketKata
         private IEnumerable<CartItem> WhereIsPromoItem()
         {
             return Cart.Items.Where(item => item.Description == Product.Description);
+        }
+
+        internal override bool IsApplicable()
+        {
+            if (Cart[Product.Description].Quantity >= BuyX)
+            {
+                return true;
+            }
+
+            return false;
         }
     }
 }
